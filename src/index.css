@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body bg-cream-off text-espresso;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative text-sm font-medium text-espresso-light hover:text-espresso transition-colors duration-300;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300;
+  }
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  .btn-primary {
+    @apply bg-espresso text-white px-8 py-4 rounded-small text-base font-semibold hover:bg-espresso-light transition-all duration-300 shadow-premium hover:shadow-premium-hover transform hover:-translate-y-0.5;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-white text-white px-8 py-4 rounded-small text-base font-semibold hover:bg-white hover:text-espresso transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply bg-white bg-opacity-90 backdrop-blur-md border border-white border-opacity-20 shadow-premium;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(28, 25, 23, 0.9) 0%, rgba(28, 25, 23, 0.7) 100%);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-espresso-light bg-opacity-20 rounded-full;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
+}
