@@ -1,7 +1,12 @@
 import React from 'react';
 
 const Navbar = ({ activeTab, setActiveTab, isScrolled }) => {
-    const tabs = ['Full Menu', 'Pastry Box', 'My Recent Orders', 'Find a Shop'];
+    const tabs = [
+        { name: 'Full Menu', href: '#menu-section' },
+        { name: 'Pastry Box', href: '#pastry-section' },
+        { name: 'My Recent Orders', href: '#orders-section' },
+        { name: 'Find a Shop', href: '#' }
+    ];
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-white shadow-premium py-4' : 'bg-transparent py-6'}`}>
@@ -20,13 +25,14 @@ const Navbar = ({ activeTab, setActiveTab, isScrolled }) => {
                     {/* Integrated Navigation Tabs */}
                     <div className="hidden lg:flex items-center gap-10">
                         {tabs.map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`nav-link text-xs uppercase tracking-widest ${activeTab === tab ? 'active' : ''} ${isScrolled ? 'text-espresso-light' : 'text-cream-off'}`}
+                            <a
+                                key={tab.name}
+                                href={tab.href}
+                                onClick={() => setActiveTab(tab.name)}
+                                className={`nav-link text-xs uppercase tracking-widest ${activeTab === tab.name ? 'active' : ''} ${isScrolled ? 'text-espresso-light' : 'text-cream-off'} hover:cursor-pointer`}
                             >
-                                {tab}
-                            </button>
+                                {tab.name}
+                            </a>
                         ))}
                     </div>
                 </div>
@@ -40,7 +46,10 @@ const Navbar = ({ activeTab, setActiveTab, isScrolled }) => {
                         Sign In
                     </button>
 
-                    <button className="bg-gold hover:bg-gold-muted text-white px-6 py-2.5 rounded-small text-xs font-semibold uppercase tracking-widest shadow-premium transition-all">
+                    <button
+                        onClick={() => alert('Coming Soon!')}
+                        className="bg-gold hover:bg-gold-muted text-white px-6 py-2.5 rounded-small text-xs font-semibold uppercase tracking-widest shadow-premium transition-all"
+                    >
                         Join Loyalty
                     </button>
                 </div>
