@@ -62,39 +62,52 @@ const OrderingInterface = () => {
     };
 
     if (orderSuccess) {
+        const orderSummaryText = cart.length > 1
+            ? `${cart[0].name} and ${cart.length - 1} other items are`
+            : `A ${cart[0].name} is`;
+
         return (
-            <div className="flex flex-col items-center justify-center py-32 text-center animate-fade-in">
-                <div className="relative mb-12">
-                    <div className="text-8xl mb-6 transform scale-125 animate-bounce">🥳</div>
-                    <div className="absolute -top-4 -right-4 animate-pulse text-4xl">✨</div>
-                    <div className="absolute -top-4 -left-4 animate-pulse delay-75 text-4xl">🎉</div>
+            <div className="flex flex-col items-center justify-center py-32 text-center animate-fade-in relative overflow-hidden">
+                {/* Visual Celebration - Confetti Emulation */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-10 left-1/4 animate-bounce text-2xl">✨</div>
+                    <div className="absolute top-20 right-1/4 animate-pulse text-2xl">🎉</div>
+                    <div className="absolute bottom-10 left-1/3 animate-bounce delay-300 text-2xl">☕</div>
+                    <div className="absolute top-1/2 right-1/3 animate-pulse delay-700 text-2xl">🎊</div>
                 </div>
 
-                <h2 className="text-5xl lg:text-7xl font-heading text-espresso mb-6">
-                    Congratulations Sue!
+                <div className="relative mb-12">
+                    <div className="text-9xl mb-6 transform hover:scale-110 transition-transform duration-500 animate-bounce">🥳</div>
+                </div>
+
+                <h2 className="text-6xl lg:text-8xl font-heading text-espresso mb-6">
+                    Congratulations!
                 </h2>
-                <p className="text-2xl text-espresso-light mb-12 font-body max-w-2xl">
+                <p className="text-2xl text-espresso-light mb-4 font-body max-w-2xl">
                     Your order has been received! ☕✨
                 </p>
+                <p className="text-lg text-gold font-medium mb-12 italic">
+                    "{orderSummaryText} being prepared for you."
+                </p>
 
-                <div className="flex gap-8 justify-center">
-                    <div className="flex flex-col items-center gap-2">
-                        <span className="text-4xl">🧪</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Brewing</span>
+                <div className="flex gap-12 justify-center mb-16">
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center text-3xl">🧪</div>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-espresso opacity-40">Brewing</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <span className="text-4xl">🥨</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Baking</span>
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center text-3xl">🥨</div>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-espresso opacity-40">Baking</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2">
-                        <span className="text-4xl">🛵</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Ready Soon</span>
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="w-16 h-16 bg-cream rounded-full flex items-center justify-center text-3xl">🛵</div>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-espresso opacity-40">Ready Soon</span>
                     </div>
                 </div>
 
                 <button
                     onClick={resetOrder}
-                    className="mt-16 btn-primary px-12"
+                    className="btn-primary px-16 py-5 text-lg shadow-premium-hover transition-all hover:scale-105"
                 >
                     Back to Menu
                 </button>
