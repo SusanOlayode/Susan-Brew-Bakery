@@ -17,12 +17,24 @@ const PASTRY_PAIRS = [
 const OrderingInterface = () => {
     const [selectedCoffee, setSelectedCoffee] = useState(COFFEE_MENU[0]);
     const [cart, setCart] = useState([]);
+    const [orderSuccess, setOrderSuccess] = useState(false);
 
     const handleCheckout = () => {
         const total = calculateTotal();
         const items = cart.map(item => `${item.name} ($${item.price.toFixed(2)})`).join(', ');
         const body = `Order Details: ${items}\nTotal: $${total}`;
+
+        // Trigger the success state
+        setOrderSuccess(true);
+
+        // Trigger the email
         window.location.href = `mailto:masonzoe@gmail.com?subject=New Coffee Order from Susan's&body=${encodeURIComponent(body)}`;
+    };
+
+    const resetOrder = () => {
+        setCart([]);
+        setOrderSuccess(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     const [customization, setCustomization] = useState({
         size: 'Medium',
@@ -48,6 +60,47 @@ const OrderingInterface = () => {
     const calculateTotal = () => {
         return cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
     };
+
+    if (orderSuccess) {
+        return (
+            <div className="flex flex-col items-center justify-center py-32 text-center animate-fade-in">
+                <div className="relative mb-12">
+                    <div className="text-8xl mb-6 transform scale-125 animate-bounce">🥳</div>
+                    <div className="absolute -top-4 -right-4 animate-pulse text-4xl">✨</div>
+                    <div className="absolute -top-4 -left-4 animate-pulse delay-75 text-4xl">🎉</div>
+                </div>
+
+                <h2 className="text-5xl lg:text-7xl font-heading text-espresso mb-6">
+                    Congratulations Sue!
+                </h2>
+                <p className="text-2xl text-espresso-light mb-12 font-body max-w-2xl">
+                    Your order has been received! ☕✨
+                </p>
+
+                <div className="flex gap-8 justify-center">
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-4xl">🧪</span>
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Brewing</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-4xl">🥨</span>
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Baking</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                        <span className="text-4xl">🛵</span>
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-40 text-espresso">Ready Soon</span>
+                    </div>
+                </div>
+
+                <button
+                    onClick={resetOrder}
+                    className="mt-16 btn-primary px-12"
+                >
+                    Back to Menu
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
