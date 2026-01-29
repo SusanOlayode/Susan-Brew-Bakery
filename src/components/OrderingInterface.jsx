@@ -17,6 +17,13 @@ const PASTRY_PAIRS = [
 const OrderingInterface = () => {
     const [selectedCoffee, setSelectedCoffee] = useState(COFFEE_MENU[0]);
     const [cart, setCart] = useState([]);
+
+    const handleCheckout = () => {
+        const total = calculateTotal();
+        const items = cart.map(item => `${item.name} ($${item.price.toFixed(2)})`).join(', ');
+        const body = `Order Details: ${items}\nTotal: $${total}`;
+        window.location.href = `mailto:masonzoe@gmail.com?subject=New Coffee Order from Susan's&body=${encodeURIComponent(body)}`;
+    };
     const [customization, setCustomization] = useState({
         size: 'Medium',
         milk: 'Whole Milk',
@@ -49,7 +56,7 @@ const OrderingInterface = () => {
             <div className="lg:col-span-8 space-y-16">
 
                 {/* Step 1: Selection */}
-                <section>
+                <section id="menu-section">
                     <header className="mb-8">
                         <h3 className="text-4xl font-heading mb-4 text-espresso">Artisan Coffee</h3>
                         <p className="text-espresso-light opacity-60">Select your preference and craft your perfect cup.</p>
@@ -226,7 +233,11 @@ const OrderingInterface = () => {
                         </div>
                     </div>
 
-                    <button className="w-full mt-10 bg-gold hover:bg-gold-muted text-white py-4 rounded-small font-bold text-sm uppercase tracking-[0.2em] shadow-premium transition-all transform hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" disabled={cart.length === 0}>
+                    <button
+                        onClick={handleCheckout}
+                        className="w-full mt-10 bg-gold hover:bg-gold-muted text-white py-4 rounded-small font-bold text-sm uppercase tracking-[0.2em] shadow-premium transition-all transform hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={cart.length === 0}
+                    >
                         Secure Checkout
                     </button>
 

@@ -30,12 +30,12 @@ const Hero = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <a href="#menu" className="btn-primary w-full sm:w-auto">
-                            Start Your Order
+                        <a href="#menu-section" className="btn-primary w-full sm:w-auto">
+                            Full Menu
                         </a>
-                        <button className="btn-outline w-full sm:w-auto">
-                            Explore Our Story
-                        </button>
+                        <a href="#orders-section" className="btn-outline w-full sm:w-auto">
+                            My Orders
+                        </a>
                     </div>
                 </div>
             </div>
