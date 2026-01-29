@@ -42,7 +42,7 @@ const Hero = () => {
 
             {/* Scroll Indicator */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 animate-bounce cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
-                <a href="#menu" className="flex flex-col items-center gap-2">
+                <a href="#menu-section" className="flex flex-col items-center gap-2">
                     <span className="text-[10px] text-white uppercase tracking-[0.2em]">Scroll to Menu</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
