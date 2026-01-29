@@ -1,7 +1,7 @@
 import React from 'react';
 import heroImg from '../assets/hero_bg.png';
 
-const Hero = () => {
+const Hero = ({ onSignInClick }) => {
     return (
         <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
             {/* Background Image with Parallax-like overlay */}
@@ -39,6 +39,12 @@ const Hero = () => {
                         <a href="#orders-section" className="btn-outline w-full sm:w-auto">
                             My Orders
                         </a>
+                        <button
+                            onClick={onSignInClick}
+                            className="btn-outline w-full sm:w-auto border-gold text-gold hover:bg-gold hover:text-white"
+                        >
+                            Sign In
+                        </button>
                     </div>
                 </div>
             </div>

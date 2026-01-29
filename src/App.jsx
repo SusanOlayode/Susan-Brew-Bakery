@@ -4,10 +4,12 @@ import Hero from './components/Hero';
 import OrderingInterface from './components/OrderingInterface';
 import LiveSupport from './components/LiveSupport';
 import Footer from './components/Footer';
+import LoginModal from './components/LoginModal';
 
 function App() {
   const [activeTab, setActiveTab] = useState('Full Menu');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,8 +21,13 @@ function App() {
 
   return (
     <div className="min-h-screen bg-cream-off">
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} isScrolled={isScrolled} />
-      <Hero />
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        isScrolled={isScrolled}
+        onSignInClick={() => setIsLoginModalOpen(true)}
+      />
+      <Hero onSignInClick={() => setIsLoginModalOpen(true)} />
       <main id="menu" className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         <OrderingInterface />
       </main>
@@ -39,13 +46,24 @@ function App() {
               </svg>
             </div>
             <p className="text-espresso-light opacity-60 italic mb-4">No recent orders found.</p>
-            <p className="text-sm font-body max-w-md mx-auto">Once you complete your first order, your history will appear here for easy re-ordering and tracking.</p>
+            <p className="text-sm font-body max-w-md mx-auto mb-8">Once you complete your first order, your history will appear here for easy re-ordering and tracking.</p>
+            <button
+              onClick={() => setIsLoginModalOpen(true)}
+              className="text-xs font-bold uppercase tracking-widest text-espresso hover:text-gold transition-colors underline underline-offset-8"
+            >
+              Sign In to View History
+            </button>
           </div>
         </div>
       </section>
 
       <LiveSupport />
       <Footer />
+
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </div>
   );
 }

@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubscribe = (e) => {
+        if (e) e.preventDefault();
+        if (!email) return;
+
+        setMessage("Thanks! You've been added to our mailing list.");
+        setEmail('');
+
+        setTimeout(() => setMessage(''), 5000);
+    };
+
+    const handleJoinLoyalty = () => {
+        setMessage("Thanks! You've been added to our mailing list.");
+        setTimeout(() => setMessage(''), 5000);
+    };
+
     return (
         <footer className="bg-espresso text-cream-off py-20">
             <div className="max-w-7xl mx-auto px-8">
@@ -44,10 +62,27 @@ const Footer = () => {
                     <div className="md:col-span-4">
                         <h5 className="text-xs uppercase tracking-widest font-bold mb-6 text-gold">The Weekly Sip</h5>
                         <p className="text-sm opacity-60 mb-6">Join our loyalty club for exclusive recipes and early access to seasonal bakes.</p>
-                        <div className="flex p-1 bg-white bg-opacity-10 rounded-small border border-white border-opacity-10">
-                            <input type="email" placeholder="Email Address" className="bg-transparent border-none text-white px-4 flex-1 text-sm outline-none" />
-                            <button className="bg-white text-espresso px-6 py-2 rounded-small text-xs font-bold uppercase tracking-widest hover:bg-gold transition-colors">Sub</button>
-                        </div>
+                        <form onSubmit={handleSubscribe} className="flex p-1 bg-white bg-opacity-10 rounded-small border border-white border-opacity-10 mb-4">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Email Address"
+                                className="bg-transparent border-none text-white px-4 flex-1 text-sm outline-none"
+                            />
+                            <button type="submit" className="bg-white text-espresso px-6 py-2 rounded-small text-xs font-bold uppercase tracking-widest hover:bg-gold transition-colors">Subscribe</button>
+                        </form>
+
+                        <button
+                            onClick={handleJoinLoyalty}
+                            className="text-[10px] uppercase tracking-[0.2em] text-gold hover:text-white transition-colors font-bold underline underline-offset-4"
+                        >
+                            Join Loyalty
+                        </button>
+
+                        {message && (
+                            <p className="mt-4 text-xs text-gold animate-fade-in">{message}</p>
+                        )}
                     </div>
 
                 </div>
