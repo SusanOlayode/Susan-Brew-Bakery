@@ -33,6 +33,9 @@ const Hero = () => {
                         <a href="#menu-section" className="btn-primary w-full sm:w-auto">
                             Full Menu
                         </a>
+                        <a href="#pastry-section" className="btn-outline w-full sm:w-auto">
+                            Pastry Box
+                        </a>
                         <a href="#orders-section" className="btn-outline w-full sm:w-auto">
                             My Orders
                         </a>

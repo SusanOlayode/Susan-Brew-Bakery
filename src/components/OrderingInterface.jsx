@@ -205,7 +205,7 @@ const OrderingInterface = () => {
                             </div>
 
                             {/* The Bakery Bridge (Frequently Paired With) */}
-                            <div className="xl:border-l xl:pl-12 border-cream">
+                            <div id="pastry-section" className="xl:border-l xl:pl-12 border-cream">
                                 <h4 className="text-2xl font-heading mb-8">Frequently Paired With</h4>
                                 <div className="space-y-6">
                                     {PASTRY_PAIRS.map(pastry => (
